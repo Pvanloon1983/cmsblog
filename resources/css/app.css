@@ -1,11 +1,83 @@
-@import 'tailwindcss';
+:root {
+    --text-color: #333;
+    --main-color: #ffffff;
+    --secondary-color: ;
+    --default-font: "Roboto", sans-serif;
+}
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: var(--default-font);
+    color: var(--text-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.header {
+    height: 70px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.header .container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .navbar ul {
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.header .navbar a {
+    color: var(--text-color);
+}
+
+.header a:hover {
+    text-decoration: underline;
+}
+
+/* Dashboard */
+.dashboard {
+    margin-top: 40px;
+}
+
+.action-handler {
+    background-color: #fff;
+    color: var(--text-color);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 20px;
+    transition: all 0.2s;
+}
+
+.action-handler:hover {
+    background-color: #a3baf1;
 }
