@@ -1,12 +1,13 @@
 <x-layout>
     <main class="container">
-        <h1>Create a new post</h1>
-        <a href="{{ route('dashboard') }}">Terug naar dashboard</a>
-        <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
+        <h1>Edit Post</h1>
+        <div> <a href="{{ route('posts.index') }}">Terug naar alle posts</a></div>
+        <form action="{{ route('posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="form-control">
                 <label for="title">Title</label>
-                <input name="title" type="text" id="title" value="{{ old('title') }}">
+                <input name="title" type="text" id="title" value="{{ $post->title }}">
                 @error('title')
                 <p class="error">
                     {{ $message }}
@@ -16,13 +17,16 @@
             <div class="form-control">
                 <label for="body">Content</label>
                 <textarea name="body" id="body">
-                    {{ old('body') }}
+                    {{ $post->body }}
                 </textarea>
                 @error('body')
                 <p class="error">
                     {{ $message }}
                 </p>
                 @enderror
+            </div>
+            <div class="form-control">
+                <img width="150" src="{{ asset('storage') . '/' . $post->image }}" alt="">
             </div>
             <div class="form-control">
                 <label for="image">Cover Image</label>
@@ -34,7 +38,7 @@
                 @enderror
             </div>
             <div class="form-control">
-                <button type="submit">Create</button>
+                <button type="submit">Update</button>
             </div>
         </form>
     </main>
