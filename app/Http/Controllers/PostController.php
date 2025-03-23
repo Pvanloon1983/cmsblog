@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Mail\PostCreated;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -16,20 +15,12 @@ class PostController extends Controller
 {
     use AuthorizesRequests;
 
-    public static function middleware(): array
-    {
-        // make sure that all routes from the post controller are protected, like post, destroy, etc.
-        return [
-            // new Middleware(['auth'], except: ['index', 'show']),
-            new Middleware(['auth']),
-        ];
-    }
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+
         $posts = Auth::user()->posts()->latest()->get();
 
         return view('posts.index', ['posts' => $posts]);
@@ -158,4 +149,5 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('success', 'Jouw bericht is verwijderd');
 
     }
+
 }

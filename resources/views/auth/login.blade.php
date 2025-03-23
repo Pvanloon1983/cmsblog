@@ -1,6 +1,10 @@
 <x-layout>
     <main class="container">
         <h1>Login</h1>
+        {{-- Session Messages --}}
+        @if (session('status'))
+            {{ session('status') }}
+        @endif
         <form class="form" action="{{ route('login') }}" method="post">
             @csrf
             <div class="form-control">
@@ -20,6 +24,15 @@
                     {{ $message }}
                 </p>
                 @enderror
+            </div>
+
+            <div class="form-control">
+                <input name="remember" type="checkbox" id="remember">
+                <label for="remember">Onthoud mij</label>
+            </div>
+
+            <div class="form-control">
+                <a href="{{ route('password.request') }}">Wachtwoord vergeten?</a>
             </div>
 
             @error('failed')
