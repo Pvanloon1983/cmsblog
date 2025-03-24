@@ -25,6 +25,28 @@
                 </p>
                 @enderror
             </div>
+            @if($categories->count())
+                <div class="form-control">
+                    <label for="categories">Category</label>
+                    <select name="categories[]" id="categories" class="form-control" multiple>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}"
+                                {{ in_array($category->id, $post->categories->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('categories')
+                    <p class="error">
+                        {{ $message }}
+                    </p>
+                    @enderror
+                </div>
+            @else
+                <div>
+                    Categories: n/a
+                </div>
+            @endif
             <div class="form-control">
                 <img width="150" src="{{ asset('storage') . '/' . $post->image }}" alt="">
             </div>

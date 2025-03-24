@@ -24,6 +24,25 @@
                 </p>
                 @enderror
             </div>
+            @if($categories->count())
+            <div class="form-control">
+                <label for="categories">Category</label>
+                <select name="categories[]" id="categories" multiple>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                @error('categories')
+                <p class="error">
+                    {{ $message }}
+                </p>
+                @enderror
+            </div>
+            @else
+                <div>
+                    Categories: n/a
+                </div>
+            @endif
             <div class="form-control">
                 <label for="image">Cover Image</label>
                 <input name="image" id="image" type="file">

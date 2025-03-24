@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\PostCreated;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,9 +21,12 @@ class PostController extends Controller
      */
     public function index()
     {
-
-        $posts = Auth::user()->posts()->latest()->get();
-
+        $posts = Auth::user()->posts()
+            ->with(['categories' => function($query) {
+                $query->orderBy('name', 'asc');
+            }])
+            ->orderBy('created_at', 'desc')  // Or use latest()
+            ->get();
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -31,7 +35,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Auth::user()->categories()->orderBy('name', 'asc')->latest()->get();
+        return view('posts.create', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -41,9 +48,11 @@ class PostController extends Controller
     {
         // Validate
         $request->validate([
-            'title' => ['required', 'max:255'],
+            'title' => ['required', 'max:255', 'unique:posts'],
             'body' => ['required'],
-            'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,webp', 'max:1024']
+            'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,webp', 'max:1024'],
+            'categories' => ['sometimes', 'array'],
+            'categories.*' => ['exists:categories,id']
         ]);
 
         // Store image if exists
@@ -70,9 +79,12 @@ class PostController extends Controller
             'image' => $path,
         ]);
 
-        $user = auth()->user(); // Or get the user however you prefer
+        // Sync categories
+        $post->categories()->sync($request->categories ?? []);
 
-        Mail::to($user->email)->send(new PostCreated($post, $user));
+        // $user = auth()->user(); // Or get the user however you prefer
+
+        // Mail::to($user->email)->send(new PostCreated($post, $user));
 
         // Redirect to dashboard
         return redirect()->route('posts.index')->with('success', 'De nieuwe post is aangemaakt!');
@@ -85,7 +97,6 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $this->authorize('show', $post);
-
         return view('posts.show', ['post' => $post]);
     }
 
@@ -95,8 +106,11 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $this->authorize('edit', $post);
-
-        return view('posts.edit', ['post' => $post]);
+        $categories = Auth::user()->categories()->orderBy('name', 'asc')->latest()->get();
+        return view('posts.edit', [
+            'post' => $post,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -110,7 +124,9 @@ class PostController extends Controller
         $request->validate([
             'title' => ['required', 'max:255'],
             'body' => ['required'],
-            'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png', 'max:1024']
+            'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png', 'max:1024'],
+            'categories' => ['sometimes', 'array'],
+            'categories.*' => ['exists:categories,id']
         ]);
 
         // Store image if exists
@@ -122,11 +138,25 @@ class PostController extends Controller
             $path = Storage::disk('public')->put('posts_images', $request->image);
         }
 
+        $slug = Str::slug($request->title);
+        $originalSlug = $slug;
+        $count = 1;
+
+        // Make sure the slug is unique
+        while (Category::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $count;
+            $count++;
+        }
+
         $post->update([
             'title' => $request->title,
             'body' => $request->body,
             'image' => $path,
+            'slug' => $slug
         ]);
+
+        // Sync categories
+        $post->categories()->sync($request->categories ?? []);
 
         // Redirect to dashboard
         return redirect()->route('posts.index')->with('success', 'Jouw bericht is bijgewerkt');

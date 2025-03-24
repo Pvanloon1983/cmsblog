@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -12,6 +13,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('dashboard')->group(function () {
     Route::resource('posts', PostController::class)->middleware(['auth', 'verified']);
+    Route::resource('categories', CategoryController::class)->middleware(['auth', 'verified']);
 });
 
 Route::middleware(['auth'])->group(function () {

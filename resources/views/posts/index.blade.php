@@ -12,6 +12,7 @@
                 <thead>
                     <th>ID</th>
                     <th>Title</th>
+                    <th>Categorieën</th>
                     <th>Image</th>
                     <th>Bekijken</th>
                     <th>Bewerken</th>
@@ -22,6 +23,11 @@
                         <tr>
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->title }}</td>
+                            @if($post->categories->count())
+                                <td>{{ $post->categories->implode('name', ', ') }}</td>
+                            @else
+                                <td>n/a</td>
+                            @endif
                             <td><img width="100" src="{{ asset('storage') . '/' . $post->image }}" alt=""></td>
                             <td><a href="{{ route('posts.show', $post->id) }}">Bekijken</a></td>
                             <td><a href="{{ route('posts.edit', $post->id) }}">Bewerken</a></td>
