@@ -1,6 +1,6 @@
-<x-layout>
+<x-layout page="posts">
     <main class="container">
-        <h1>Edit Post</h1>
+        <h1>Berichten bijwerken</h1>
         <div> <a href="{{ route('posts.index') }}">Terug naar alle posts</a></div>
         <form action="{{ route('posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -15,7 +15,7 @@
                 @enderror
             </div>
             <div class="form-control">
-                <label for="body">Content</label>
+                <label for="body">Inhoud</label>
                 <textarea name="body" id="body">
                     {{ $post->body }}
                 </textarea>
@@ -27,7 +27,7 @@
             </div>
             @if($categories->count())
                 <div class="form-control">
-                    <label for="categories">Category</label>
+                    <label for="categories">Categorie</label>
                     <select name="categories[]" id="categories" class="form-control" multiple>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}"
@@ -44,14 +44,14 @@
                 </div>
             @else
                 <div>
-                    Categories: n/a
+                    Categorieën: n/a
                 </div>
             @endif
             <div class="form-control">
                 <img width="150" src="{{ asset('storage') . '/' . $post->image }}" alt="">
             </div>
             <div class="form-control">
-                <label for="image">Cover Image</label>
+                <label for="image">Afbeelding</label>
                 <input name="image" id="image" type="file">
                 @error('image')
                 <p class="error">
@@ -60,7 +60,7 @@
                 @enderror
             </div>
             <div class="form-control">
-                <button type="submit">Update</button>
+                <button type="submit">Bijwerken</button>
             </div>
         </form>
     </main>

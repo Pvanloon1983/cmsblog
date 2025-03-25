@@ -1,6 +1,6 @@
-<x-layout>
+<x-layout page="posts">
     <main class="container">
-        <h1>Alle posts</h1>
+        <h1>Alle berichten</h1>
         <a href="{{ route('dashboard') }}">Terug naar dashboard</a>
         {{-- Session Messages --}}
         @if (session('success'))
@@ -35,7 +35,7 @@
                                 <form action="{{ route('posts.destroy', $post) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">Delete</button>
+                                    <button type="submit">Verwijderen</button>
                                 </form>
                             </td>
                         </tr>
@@ -43,7 +43,7 @@
                 </tbody>
             </table>
             @else
-                <p>Er zijn geen posts!</p>
+                <p>Er zijn geen berichten!</p>
             @endif
         </div>
     </main>

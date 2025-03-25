@@ -1,7 +1,7 @@
 <x-layout>
     <main class="container">
-        <h1>Edit Category</h1>
-        <div> <a href="{{ route('categories.index') }}">Terug naar categorieen</a></div>
+        <h1>Categorie bijwerken</h1>
+        <div> <a href="{{ route('categories.index') }}">Terug naar categorieën</a></div>
         <form action="{{ route('categories.update', $category->id) }}" method="post">
             @csrf
             @method('PUT')
@@ -15,7 +15,7 @@
                 @enderror
             </div>
              <div class="form-control">
-                <button type="submit">Update</button>
+                <button type="submit">Bijwerken</button>
             </div>
         </form>
     </main>

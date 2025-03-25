@@ -3,6 +3,7 @@
     --main-color: #ffffff;
     --secondary-color: ;
     --default-font: "Roboto", sans-serif;
+    --header-heigth: 70px;
 }
 
 
@@ -18,6 +19,10 @@ html, body {
 body {
     font-family: var(--default-font);
     color: var(--text-color);
+}
+
+main {
+    margin-top: var(--header-heigth)!important;
 }
 
 a {
@@ -37,9 +42,12 @@ button {
 }
 
 .header {
-    height: 70px;
+    height: var(--header-heigth);
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .header .container {
@@ -49,8 +57,19 @@ button {
     align-items: center;
 }
 
+.header .navbar .btn {
+    border: none;
+    border-radius: 4px;
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 7px 15px;
+    font-family: var(--default-font);
+    font-size: 15px;
+}
+
 .header .navbar ul {
     display: flex;
+    align-items: center;
     gap: 30px;
     padding: 0;
     margin: 0;
@@ -80,4 +99,95 @@ button {
 
 .action-handler:hover {
     background-color: #a3baf1;
+}
+
+/* Login and Register page*/
+.auth {
+    background-color: #f3f3f3;
+    height: 100vh;
+}
+
+.auth main {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.auth main h1 {
+    margin-top: 100px;
+    margin-bottom: 10px;
+}
+
+.auth .form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth .form .btn {
+    margin-top: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 7px 15px;
+    font-family: var(--default-font);
+    font-size: 15px;
+}
+
+.auth .error {
+    margin: 0;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #dc3545;
+}
+
+.auth .form .form-control {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.auth .form #remember{
+    margin: 0;
+}
+
+.auth .form .form-control
+input[type='text'],
+input[type='email'],
+input[type='password'] {
+    background-color: #fff;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    width: 275px;
+    padding: 7px 9px;
+    margin-top: 3px;
+}
+
+.auth .form-control.remember-forgot {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.auth-top-box {
+    width: 350px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.auth-top-box h1 {
+    text-align: center;
+    font-size: 26px;
+}
+
+.auth .status,
+.auth .success {
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 0px;
+    color: #198754;
 }

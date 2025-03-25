@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout page="dashboard">
     <main class="container">
         <h1>Dashboard</h1>
         <h2>Welkom terug, {{ $user->first_name }}</h2>

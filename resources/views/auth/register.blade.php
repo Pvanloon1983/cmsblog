@@ -1,11 +1,13 @@
-<x-layout>
+<x-layout page="auth">
     <main class="container">
-        <h1>register</h1>
+        <div class="auth-top-box">
+        <h1>Registreren</h1>
+        </div>
 
         <form class="form" action="{{ route('register') }}" method="post">
             @csrf
             <div class="form-control">
-                <label for="first_name">First Name</label>
+                <label for="first_name">Voornaam</label>
                 <input name="first_name" type="text" id="first_name" value="{{ old('first_name') }}">
                 @error('first_name')
                 <p class="error">
@@ -14,7 +16,7 @@
                 @enderror
             </div>
             <div class="form-control">
-                <label for="last_name">Last Name</label>
+                <label for="last_name">Achternaam</label>
                 <input name="last_name" type="text" id="last_name" value="{{ old('last_name') }}">
                 @error('last_name')
                 <p class="error">
@@ -23,7 +25,7 @@
                 @enderror
             </div>
             <div class="form-control">
-                <label for="email">Email</label>
+                <label for="email">E-mail</label>
                 <input name="email" type="text" id="email" value="{{ old('email') }}">
                 @error('email')
                 <p class="error">
@@ -32,7 +34,7 @@
                 @enderror
             </div>
             <div class="form-control">
-                <label for="password">Password</label>
+                <label for="password">Wachtwoord</label>
                 <input name="password" type="password" id="password">
                 @error('password')
                 <p class="error">
@@ -41,11 +43,16 @@
                 @enderror
             </div>
             <div class="form-control">
-                <label for="password_confirmation">Confirm Password</label>
+                <label for="password_confirmation">Bevestig wachtwoord</label>
                 <input name="password_confirmation" type="password" id="password_confirmation">
             </div>
+            <div class="form-control remember-forgot">
+                <div class="forgot-password-box">
+                    <a href="{{ route('login') }}">Al geregistreerd? klik hier</a>
+                </div>
+            </div>
             <div class="form-control">
-                <button type="submit">Register</button>
+                <button class="btn" type="submit">Registreren</button>
             </div>
         </form>
     </main>

@@ -1,6 +1,6 @@
-<x-layout>
+<x-layout page="posts">
     <main class="container">
-        <h1>Create a new post</h1>
+        <h1>Voeg een nieuw bericht toe</h1>
         <a href="{{ route('dashboard') }}">Terug naar dashboard</a>
         <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -14,7 +14,7 @@
                 @enderror
             </div>
             <div class="form-control">
-                <label for="body">Content</label>
+                <label for="body">Inhoud</label>
                 <textarea name="body" id="body">
                     {{ old('body') }}
                 </textarea>
@@ -26,7 +26,7 @@
             </div>
             @if($categories->count())
             <div class="form-control">
-                <label for="categories">Category</label>
+                <label for="categories">Categorie</label>
                 <select name="categories[]" id="categories" multiple>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -40,11 +40,11 @@
             </div>
             @else
                 <div>
-                    Categories: n/a
+                    Categorieën: n/a
                 </div>
             @endif
             <div class="form-control">
-                <label for="image">Cover Image</label>
+                <label for="image">Afbeelding</label>
                 <input name="image" id="image" type="file">
                 @error('image')
                 <p class="error">
@@ -53,7 +53,7 @@
                 @enderror
             </div>
             <div class="form-control">
-                <button type="submit">Create</button>
+                <button type="submit">Toevoegen</button>
             </div>
         </form>
     </main>

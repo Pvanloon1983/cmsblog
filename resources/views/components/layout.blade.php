@@ -1,3 +1,5 @@
+@props(['page' ?? ''])
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body class="{{ $page }}">
     <header class="header">
         <div class="container">
             <div class="logo">
@@ -23,8 +25,8 @@
                     <li class="nav-item"><a href="#">Contact</a></li>
 
                     @guest()
-                        <li class="nav-item"><a href="{{ route('login') }}">Login</a></li>
-                        <li class="nav-item"><a href="{{ route('register') }}">Register</a></li>
+                        <li class="nav-item"><a href="{{ route('login') }}">Inloggen</a></li>
+                        <li class="nav-item"><a href="{{ route('register') }}">Registreren</a></li>
                     @endguest
 
                     @auth()
@@ -32,7 +34,7 @@
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
-                            <button type="submit">Logout</button>
+                            <button class="btn" type="submit">Uitloggen</button>
                         </form>
                     </li>
                     @endauth

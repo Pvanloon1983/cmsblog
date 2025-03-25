@@ -1,14 +1,16 @@
-<x-layout>
+<x-layout page="auth">
     <main class="container">
-        <h1>Login</h1>
+        <div class="auth-top-box">
+        <h1>Inloggen</h1>
         {{-- Session Messages --}}
         @if (session('status'))
-            {{ session('status') }}
+            <p class="status">{{ session('status') }}</p>
         @endif
+        </div>
         <form class="form" action="{{ route('login') }}" method="post">
             @csrf
             <div class="form-control">
-                <label for="email">Email</label>
+                <label for="email">E-mail</label>
                 <input name="email" type="text" id="email" value="{{ old('email') }}">
                 @error('email')
                 <p class="error">
@@ -17,7 +19,7 @@
                 @enderror
             </div>
             <div class="form-control">
-                <label for="password">Password</label>
+                <label for="password">Wachtwoord</label>
                 <input name="password" type="password" id="password">
                 @error('password')
                 <p class="error">
@@ -26,13 +28,14 @@
                 @enderror
             </div>
 
-            <div class="form-control">
-                <input name="remember" type="checkbox" id="remember">
-                <label for="remember">Onthoud mij</label>
-            </div>
-
-            <div class="form-control">
-                <a href="{{ route('password.request') }}">Wachtwoord vergeten?</a>
+            <div class="form-control remember-forgot">
+                <div class="remember-me-box">
+                    <input name="remember" type="checkbox" id="remember">
+                    <label for="remember">Onthoud mij</label>
+                </div>
+                <div class="forgot-password-box">
+                    <a href="{{ route('password.request') }}">Wachtwoord vergeten?</a>
+                </div>
             </div>
 
             @error('failed')
@@ -42,7 +45,7 @@
             @enderror
 
             <div class="form-control">
-                <button type="submit">Login</button>
+                <button class="btn" type="submit">Login</button>
             </div>
         </form>
     </main>
