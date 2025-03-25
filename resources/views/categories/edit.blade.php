@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout page="categories">
     <main class="container">
         <h1>Categorie bijwerken</h1>
         <div> <a href="{{ route('categories.index') }}">Terug naar categorieën</a></div>

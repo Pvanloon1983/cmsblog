@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout page="categories">
     <main class="container">
         <h1>Voeg een categorie toe</h1>
         <a href="{{ route('dashboard') }}">Terug naar dashboard</a>
