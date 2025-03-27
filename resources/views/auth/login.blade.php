@@ -34,18 +34,18 @@
                     <label for="remember">Onthoud mij</label>
                 </div>
                 <div class="forgot-password-box">
-                    <a href="{{ route('password.request') }}">Wachtwoord vergeten?</a>
+                    <a href="{{ route('password.request') }}">Wachtwoord vergeten? Klik hier</a>
                 </div>
             </div>
 
             @error('failed')
-            <p>
+            <p class="error wrong-auth">
                 {{ $message }}
             </p>
             @enderror
 
             <div class="form-control">
-                <button class="btn" type="submit">Login</button>
+                <button class="btn" id="submitButton" type="submit"> <span id="submitSpinner" class="spinner" style="display: none; margin-right: 8px;"></span>Login</button>
             </div>
         </form>
     </main>

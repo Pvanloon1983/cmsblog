@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="form-control">
-                <button class="btn" type="submit">Registreren</button>
+                <button class="btn" id="submitButton" type="submit"> <span id="submitSpinner" class="spinner" style="display: none; margin-right: 8px;"></span>Registreren</button>
             </div>
         </form>
     </main>

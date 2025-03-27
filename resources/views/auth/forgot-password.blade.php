@@ -21,7 +21,7 @@
                 @enderror
             </div>
             <div class="form-control">
-                <button class="btn" type="submit">Verzenden</button>
+                <button class="btn" id="submitButton" type="submit"> <span id="submitSpinner" class="spinner" style="display: none; margin-right: 8px;"></span>Verzenden</button>
             </div>
         </form>
     </main>

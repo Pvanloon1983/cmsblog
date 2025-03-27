@@ -36,7 +36,7 @@
                     <input name="password_confirmation" type="password" id="password_confirmation">
                 </div>
                 <div class="form-control">
-                    <button class="btn" type="submit">Herstel wachtwoord</button>
+                    <button class="btn" id="submitButton" type="submit"> <span id="submitSpinner" class="spinner" style="display: none; margin-right: 8px;"></span>Herstel wachtwoord</button>
                 </div>
 
         </form>

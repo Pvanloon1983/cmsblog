@@ -1,50 +1,55 @@
 <x-layout page="posts">
     <main class="container">
+        <div class="dashboard">
         <h1>Alle berichten</h1>
-        <a href="{{ route('dashboard') }}">Terug naar dashboard</a>
+        <a class="back-to-dashboard" href="{{ route('dashboard') }}"><i class="fa-solid fa-arrow-left"></i> Terug naar dashboard</a>
         {{-- Session Messages --}}
         @if (session('success'))
-            <p>{{ session('success') }}</p>
+            <p class="success">{{ session('success') }}</p>
         @endif
         <div class="posts-table">
             @if ($posts->count())
-            <table>
+            <div class="posts-table-wrapper">
+            <table class="posts-table">
                 <thead>
                     <th>ID</th>
-                    <th>Title</th>
+                    <th class="title">Title</th>
                     <th>Categorieën</th>
                     <th>Image</th>
-                    <th>Bekijken</th>
-                    <th>Bewerken</th>
-                    <th>Verwijderen</th>
+                    <th colspan="3">Actie</th>
                 </thead>
                 <tbody>
                     @foreach($posts as $post)
                         <tr>
                             <td>{{ $post->id }}</td>
-                            <td>{{ $post->title }}</td>
+                            <td class="title">{{ $post->title }}</td>
                             @if($post->categories->count())
                                 <td>{{ $post->categories->implode('name', ', ') }}</td>
                             @else
                                 <td>n/a</td>
                             @endif
                             <td><img width="100" src="{{ asset('storage') . '/' . $post->image }}" alt=""></td>
-                            <td><a href="{{ route('posts.show', $post->id) }}">Bekijken</a></td>
-                            <td><a href="{{ route('posts.edit', $post->id) }}">Bewerken</a></td>
-                            <td>
-                                <form action="{{ route('posts.destroy', $post) }}" method="post">
+                            <td class="action">
+                                <a class="btn info" href="{{ route('posts.show', $post->id) }}"><i class="fa-solid fa-eye"></i></a>
+                                <a class="btn edit" href="{{ route('posts.edit', $post->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <form class="form" action="{{ route('posts.destroy', $post) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">Verwijderen</button>
+                                    <button class="btn delete" type="submit">
+                                        <span class="spinner" style="display: none; margin-right: 8px;"></span>
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            </div>
             @else
                 <p>Er zijn geen berichten!</p>
             @endif
+        </div>
         </div>
     </main>
 </x-layout>
