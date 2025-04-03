@@ -62,7 +62,7 @@ class CategoryController extends Controller
         // Mail::to($user->email)->send(new PostCreated($post, $user));
 
         // Redirect to dashboard
-        return redirect()->route('categories.index')->with('success', 'De nieuwe categorie is aangemaakt!');
+        return redirect()->route('categories.index')->with('success', 'Categorie is toegevoegd!');
     }
 
     /**
@@ -114,7 +114,7 @@ class CategoryController extends Controller
         // Mail::to($user->email)->send(new PostCreated($post, $user));
 
         // Redirect to dashboard
-        return redirect()->route('categories.index')->with('success', 'De categorie is bijgewerkt!');
+        return redirect()->route('categories.index')->with('success', 'Categorie is bijgewerkt!');
     }
 
     /**
@@ -122,10 +122,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $this->authorize('destroy', $category);
+        $this->authorize('delete', $category);
 
         $category->delete();
 
-        return redirect()->route('categories.index')->with('success', 'De categorie is verwijderd');
+        return redirect()->route('categories.index')->with('success', 'Categorie is verwijderd');
     }
 }

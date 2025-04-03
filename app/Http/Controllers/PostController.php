@@ -87,7 +87,7 @@ class PostController extends Controller
         // Mail::to($user->email)->send(new PostCreated($post, $user));
 
         // Redirect to dashboard
-        return redirect()->route('posts.index')->with('success', 'De nieuwe post is aangemaakt!');
+        return redirect()->route('posts.index')->with('success', 'Bericht is toegevoegd!');
 
     }
 
@@ -159,7 +159,7 @@ class PostController extends Controller
         $post->categories()->sync($request->categories ?? []);
 
         // Redirect to dashboard
-        return redirect()->route('posts.index')->with('success', 'Jouw bericht is bijgewerkt');
+        return redirect()->route('posts.index')->with('success', 'Bericht is bijgewerkt');
     }
 
     /**
@@ -176,7 +176,7 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('posts.index')->with('success', 'Jouw bericht is verwijderd');
+        return redirect()->route('posts.index')->with('success', 'Bericht is verwijderd');
 
     }
 

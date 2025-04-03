@@ -31,6 +31,9 @@ a {
     color: var(--text-color);
 }
 
+.bottom-no-margin {
+    margin-bottom: 0 !important;
+}
 
 button {
     cursor: pointer;
@@ -38,6 +41,10 @@ button {
 
 input[type='checkbox'] {
     cursor: pointer;
+}
+
+.btn-danger {
+    background-color: #dc3545 !important;
 }
 
 .container {
@@ -114,6 +121,23 @@ input[type='checkbox'] {
 .back-to-dashboard {
     display: block;
     margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.dashboard .btn-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard .btn-box .btn {
+    border: none;
+    border-radius: 4px;
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 7px 15px;
+    font-family: var(--default-font);
+    font-size: 15px;
     margin-bottom: 20px;
 }
 
@@ -297,7 +321,8 @@ input[type='password'] {
     color: #dc3545;
 }
 
-.posts .success {
+.posts .success,
+.categories .success {
     margin: 0;
     margin-top: -10px!important;
     font-size: 16px;
@@ -376,7 +401,7 @@ select {
     color: #198754;
 }
 
-.posts-table table {
+.dashboard-table table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #e3e3e3;
@@ -387,34 +412,34 @@ select {
     font-size: 15px;
 }
 
-.posts-table tbody tr {
+.dashboard-table tbody tr {
     padding: 12px 15px;
     text-align: center;
     border-bottom: 1px solid #e3e3e3;
 }
 
-.posts-table tbody td {
+.dashboard-table tbody td {
     padding: 12px 15px;
 }
 
-.posts-table th {
+.dashboard-table th {
     background-color: #000;
     color: #fff;
     font-weight: 600;
     text-align: center;
 }
 
-.posts-table tr:hover {
+.dashboard-table tr:hover {
     background-color: #f0f8ff; /* light blue on hover */
     transition: background-color 0.2s ease;
 }
 
-.posts-table .btn.delete {
+.dashboard-table .btn.delete {
     margin-top: 0px !important;
     background-color: #dc3545;
 }
 
-.posts-table .btn {
+.dashboard-table .btn {
     border: none;
     border-radius: 4px;
     background-color: dodgerblue;
@@ -424,16 +449,17 @@ select {
     font-size: 15px;
 }
 
-.posts-table .btn.info {
+.dashboard-table .btn.info {
     background-color: #17a2b8;
 }
 
-.posts-table .btn.edit {
+.dashboard-table .btn.edit {
     background-color: #ffc107;
     color: var(--default-font);
 }
 
-.posts-table .action {
+
+.dashboard-table .action {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -442,20 +468,27 @@ select {
     height: 80px;
 }
 
-.posts-table-wrapper {
+.dashboard-table-wrapper {
     width: 100%;
     overflow-x: auto;
 }
 
-.posts-table {
+.dashboard-table {
     min-width: 800px;
 }
 
-.posts-table td img {
+.dashboard-table td img {
     width: 80px;
     height: auto;
     border-radius: 4px;
     object-fit: cover;
 }
 
+.categories-table table {
+    max-width: 300px;
+}
 
+.action.dashboard-table {
+    display: flex;
+    gap: 10px;
+}

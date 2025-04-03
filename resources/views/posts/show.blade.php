@@ -1,13 +1,47 @@
 <x-layout page="posts">
     <main class="container">
         <div class="dashboard">
-            <div> <a href="{{ route('posts.index') }}">Terug naar alle berichten</a></div>
             <h1>{{ $post->title }}</h1>
-            <div>Categorieën: </div>
-            <img width="200px" class="post-image-cover" src="{{ asset('storage') . '/' . $post->image }}" alt="{{ $post->title }}">
-            <div class="post-content">
-                {{ $post->body }}
+            <a class="back-to-dashboard" href="{{ route('posts.index') }}"><i class="fa-solid fa-arrow-left"></i> Terug naar alle berichten</a>
+            @if ($post->categories->count())
+                <div style="margin-bottom: 15px;">
+                    <strong>Categorieën:</strong>
+                    {{ $post->categories->pluck('name')->join(', ') }}
+                </div>
+            @endif
+
+            @if ($post->image)
+                <img
+                    width="200"
+                    class="post-image-cover"
+                    src="{{ asset('storage/' . $post->image) }}"
+                    alt="{{ $post->title }}"
+                    style="border-radius: 4px; margin-bottom: 20px;"
+                >
+            @endif
+
+            <div class="post-content" style="line-height: 1.6; font-size: 16px;">
+               {{ $post->body }}
             </div>
+
+            {{--
+            <div class="action dashboard-table" style="margin-top: 20px;">
+                <a class="btn edit" href="{{ route('posts.edit', $post->id) }}">
+                    Bewerken
+                </a>
+
+                <form class="form" action="{{ route('posts.destroy', $post) }}" method="post" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn delete" type="submit">
+                        <span class="spinner" style="display: none; margin-right: 8px;"></span>
+                        Verwijderen
+                    </button>
+                </form>
+            </div>
+            --}}
+
         </div>
     </main>
 </x-layout>
+

@@ -13,6 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+        // cascadeOnDelete ensures that when a post or category is deleted, the related pivot entry is also removed.
+        // If all posts or categories are deleted, the relationships are cleaned up automatically,
+        // but the remaining posts or categories themselves still exist.
+        // Note: this only works correctly if both foreign keys have cascadeOnDelete() applied.
         Schema::create('post_category', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Post::class)->constrained()->cascadeOnDelete();

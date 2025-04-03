@@ -2,15 +2,18 @@
     <main class="container">
         <div class="dashboard">
         <h1>Alle berichten</h1>
-        <a class="back-to-dashboard" href="{{ route('dashboard') }}"><i class="fa-solid fa-arrow-left"></i> Terug naar dashboard</a>
+        <div class="btn-box">
+            <a class="back-to-dashboard" href="{{ route('dashboard') }}"><i class="fa-solid fa-arrow-left"></i> Terug naar dashboard</a>
+            <a href="{{ route('posts.create') }}"><button class="btn" id="submitButton" type="submit"> <span id="submitSpinner" class="spinner" style="display: none; margin-right: 8px;"></span>Bericht toevoegen</button></a>
+        </div>
         {{-- Session Messages --}}
         @if (session('success'))
             <p class="success">{{ session('success') }}</p>
         @endif
-        <div class="posts-table">
+        <div class="dashboard-table">
             @if ($posts->count())
-            <div class="posts-table-wrapper">
-            <table class="posts-table">
+            <div class="dashboard-table-wrapper">
+            <table>
                 <thead>
                     <th>ID</th>
                     <th class="title">Title</th>

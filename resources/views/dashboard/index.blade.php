@@ -8,10 +8,8 @@
         @endif
         <div class="dashboard">
             <div class="action-handler-box">
-            <a class="action-handler" href="{{ route('posts.create') }}">Schrijf een nieuwe post</a>
-            <a class="action-handler" href="{{ route('posts.index') }}">Bekijk al jouw posts</a>
-            <a class="action-handler" href="{{ route('categories.index') }}">Bekijk al jouw categorieën</a>
-            <a class="action-handler" href="{{ route('categories.create') }}">Voeg een nieuwe categorie toe</a>
+            <a class="action-handler" href="{{ route('posts.index') }}">Alle berichten</a>
+            <a class="action-handler" href="{{ route('categories.index') }}">Alle categorieën</a>
             </div>
         </div>
     </main>
