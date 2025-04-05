@@ -48,4 +48,18 @@ removeButton.addEventListener('click', function () {
     removeButton.style.display = 'none';
 });
 
+const deleteButton = document.getElementById('delete-image-button');
+const currentImage = document.getElementById('current-image');
+const deleteInput = document.getElementById('delete_image');
+
+if (deleteButton) {
+    deleteButton.addEventListener('click', () => {
+        if (confirm("Weet je zeker dat je de afbeelding wilt verwijderen?")) {
+            currentImage.style.display = 'none';
+            deleteButton.style.display = 'none';
+            deleteInput.value = '1';
+        }
+    });
+}
+
 });

@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-control">
                     <label for="body">Inhoud</label>
-                    <textarea name="body" id="body">{{ old('body') }}</textarea>
+                    <textarea id="mytextarea" name="body" id="body">{{ old('body') }}</textarea>
                     @error('body')
                     <p class="error">
                         {{ $message }}

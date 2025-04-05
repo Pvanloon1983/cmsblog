@@ -49,7 +49,28 @@
 
             @if($post->image)
                 <div class="form-control bottom-no-margin">
-                    <img width="150" src="{{ asset('storage') . '/' . $post->image }}" alt="">
+                    <div class="image-wrapper" style="position: relative; display: inline-block;">
+                        <img id="current-image" width="150" src="{{ asset('storage/' . $post->image) }}" alt="">
+
+                        <!-- X Button -->
+                        <button type="button" id="delete-image-button" style="
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                background: red;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 24px;
+                height: 24px;
+                cursor: pointer;
+                font-size: 14px;
+                line-height: 1;
+            ">×</button>
+                    </div>
+
+                    <!-- Hidden input to indicate image deletion -->
+                    <input type="hidden" name="delete_image" id="delete_image" value="0">
                 </div>
             @endif
 
@@ -71,7 +92,7 @@
                 @enderror
             </div>
             <div class="form-control">
-                <button class="btn" id="submitButton" type="submit"> <span id="submitSpinner" class="spinner" style="display: none; margin-right: 8px;"></span>Toevoegen</button>
+                <button class="btn" id="submitButton" type="submit"> <span id="submitSpinner" class="spinner" style="display: none; margin-right: 8px;"></span>Bijwerken</button>
             </div>
         </form>
        </div>

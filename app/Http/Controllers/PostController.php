@@ -120,6 +120,13 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
 
+        if ($request->has('delete_image') && $request->delete_image == '1') {
+            if ($post->image && Storage::exists($post->image)) {
+                Storage::delete($post->image);
+            }
+            $post->image = null;
+        }
+
         // Validate
         $request->validate([
             'title' => ['required', 'max:255'],

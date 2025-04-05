@@ -12,16 +12,17 @@
 
             @if ($post->image)
                 <img
-                    width="200"
+                    width="100%"
+                    height="200px"
                     class="post-image-cover"
                     src="{{ asset('storage/' . $post->image) }}"
                     alt="{{ $post->title }}"
-                    style="border-radius: 4px; margin-bottom: 20px;"
+                    style="border-radius: 4px; margin-bottom: 0px; object-fit: cover; object-position: center;"
                 >
             @endif
 
             <div class="post-content" style="line-height: 1.6; font-size: 16px;">
-               {{ $post->body }}
+                {!! $post->body !!}
             </div>
 
             {{--
