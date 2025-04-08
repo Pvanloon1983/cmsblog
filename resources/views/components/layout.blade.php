@@ -17,11 +17,11 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="{{ route('home') }}">Home</a>
+                <a href="{{ route('home') }}"><img width="60px" src="{{ asset('storage/images/mosque.png') }}" alt=""></a>
             </div>
             <nav class="navbar">
                 <ul>
-                    <li class="nav-item"><a href="#">Home</a></li>
+                    <li class="nav-item"><a href="{{ route('home') }}">Home</a></li>
                     <li class="nav-item"><a href="#">Blog</a></li>
                     <li class="nav-item"><a href="#">About</a></li>
                     <li class="nav-item"><a href="#">Contact</a></li>
@@ -43,6 +43,9 @@
 
                 </ul>
             </nav>
+            <div class="menu-btn-toggle">
+                <button class="btn-toggle"><i class="fa-solid fa-bars"></i></button>
+            </div>
         </div>
     </header>
     {{ $slot }}

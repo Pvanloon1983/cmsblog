@@ -25,9 +25,9 @@
                     @foreach($posts as $post)
                         <tr>
                             <td>{{ $post->id }}</td>
-                            <td class="title">{{ $post->title }}</td>
+                            <td style="white-space: nowrap" class="title">{{ $post->title }}</td>
                             @if($post->categories->count())
-                                <td>{{ $post->categories->implode('name', ', ') }}</td>
+                                <td style="white-space: nowrap">{{ $post->categories->implode('name', ', ') }}</td>
                             @else
                                 <td>n/a</td>
                             @endif

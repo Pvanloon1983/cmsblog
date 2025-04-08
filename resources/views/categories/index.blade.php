@@ -23,7 +23,7 @@
                     @foreach($categories as $category)
                         <tr>
                             <td>{{ $category->id }}</td>
-                            <td>{{ $category->name }}</td>
+                            <td style="white-space: nowrap">{{ $category->name }}</td>
                             <td class="action">
                                 <a class="btn edit" href="{{ route('categories.edit', $category->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <form class="form" action="{{ route('categories.destroy', $category) }}" method="post">
