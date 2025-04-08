@@ -11,10 +11,18 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Services\HtmlPurifierService;
 
 class PostController extends Controller
 {
     use AuthorizesRequests;
+
+    protected $purifier;
+
+    public function __construct(HtmlPurifierService $purifier)
+    {
+        $this->purifier = $purifier;
+    }
 
     /**
      * Display a listing of the resource.
@@ -55,6 +63,9 @@ class PostController extends Controller
             'categories.*' => ['exists:categories,id']
         ]);
 
+        // Purify the body content
+        $cleanBody = $this->purifier->purify($request->input('body'));
+
         // Store image if exists
         $path = null;
         if ($request->hasFile('image')) {
@@ -75,7 +86,7 @@ class PostController extends Controller
         $post = Auth::user()->posts()->create([
             'title' => $request->title,
             'slug' => $slug,
-            'body' => $request->body,
+            'body' => $cleanBody,
             'image' => $path,
         ]);
 
@@ -136,6 +147,9 @@ class PostController extends Controller
             'categories.*' => ['exists:categories,id']
         ]);
 
+        // Purify the body content
+        $cleanBody = $this->purifier->purify($request->input('body'));
+
         // Store image if exists
         $path = $post->image ?? null;
         if ($request->hasFile('image')) {
@@ -157,7 +171,7 @@ class PostController extends Controller
 
         $post->update([
             'title' => $request->title,
-            'body' => $request->body,
+            'body' => $cleanBody,
             'image' => $path,
             'slug' => $slug
         ]);
